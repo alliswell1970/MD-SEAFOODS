@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Online Fresh Seafoods</title>
+  <style>
+
+    body { font-family: Arial, sans-serif; margin: 0; background:#f5f9fc; color:#333; }
+    header { background:#0b4f6c; color:white; padding:20px; text-align:center; }
+    nav a { color:white; margin:0 15px; text-decoration:none; font-weight:bold; }
+.hero {
+  padding: 60px 20px;
+  text-align: center;
+  color: white;
+
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+    url("header.jpg");
+
+  background-size: cover;
+  background-position: center;
+}
+
+    .hero h1 { font-size:36px; margin-bottom:10px; }
+    .hero p { font-size:20px }
+    .btn { background:#25D366; color:#fff; padding:12px 25px; text-decoration:none; border-radius:5px; display:inline-block; margin-top:20px; }
+    section { padding:40px 20px; max-width:1100px; margin:auto; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; }
+    .card { background:#fff; padding:20px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.1); }
+    footer { background:linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+    url("footer1.jpg");; color:#fff; text-align:center; padding:20px; }
+    .whatsapp { position:fixed; bottom:20px; right:20px; background:#25D366; color:#fff; padding:15px 20px; border-radius:50px; font-weight:bold; text-decoration:none; box-shadow:0 4px 8px rgba(0,0,0,0.2); }
+    .price { font-weight:bold; margin:10px 0; }
+    .add { background:#25D366; color:#fff; border:none; padding:8px 15px; border-radius:5px; cursor:pointer; }
+    ul { padding-left:20px; }
+    input, textarea, select { font-size:14px; }
+/* Toast Alert */
+.toast{
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #25D366;
+  color: #fff;
+  padding: 14px 22px;
+  border-radius: 30px;
+  font-weight: bold;
+  box-shadow: 0 8px 20px rgba(0,0,0,.25);
+  opacity: 0;
+  pointer-events: none;
+  transition: all .4s ease;
+  z-index: 9999;
+}
+
+.toast.show{
+  opacity: 1;
+  bottom: 50px;
+}
+
+  </style>
+</head>
+<div id="toast" class="toast"></div>
+<body>
+
+<header>
+  <h2>OceanFresh Seafoods</h2>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#products">Products</a>
+    <a href="#quality">Quality</a>
+<a href="#cart">Cart</a>
+<a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<div class="hero" id="home">
+  <h1>Fresh Seafoods Delivered to Your Doorstep</h1>
+  <p>✔Daily fresh fish, prawns & crabs ✔ Hygienic cleaning ✔ Fast delivery</p>
+  <a href="#products" class="btn">Order Now</a>
+</div>
+
+<section id="products">
+  <h2>Our Products</h2>
+  <div class="grid">
+
+    <div class="card">
+<img src="tuna fish.jpg" alt="tuna fish" style="width:100%;border-radius:6px;margin-bottom:10px;" />
+      <h3>Tuna Fish</h3>
+      <div class="price">₹200 / Kg</div>
+      <select id="Tuna Fish-qty">
+        <option value="1">1 Kg</option>
+        <option value="2">2 Kg</option>
+        <option value="3">3 Kg</option>
+<option value="4">4 Kg</option>
+<option value="5">5 Kg</option>
+      </select><br><br>
+      <button class="add" onclick="addToCart('Tuna Fish',200,'Tuna Fish-qty')">Add to Cart</button>
+    </div>
+
+<div class="card">
+<img src="vanjaram.jpg" alt="vanjaram" style="width:100%;border-radius:6px;margin-bottom:10px;" />
+      <h3>Vanjaram Fish</h3>
+      <div class="price">₹800 / Kg</div>
+      <select id="vanjaram-qty">
+        <option value="1">1 Kg</option>
+        <option value="2">2 Kg</option>
+        <option value="3">3 Kg</option>
+<option value="4">4 Kg</option>
+<option value="5">5 Kg</option>
+      </select><br><br>
+      <button class="add" onclick="addToCart('vanjaram',800,'vanjaram-qty')">Add to Cart</button>
+    </div>
+
+<div class="card">
+<img src="kaanagadadalu.jpg" alt="kaanagadadalu" style="width:100%;border-radius:6px;margin-bottom:10px;" />
+      <h3>Kaanagadadalu Fish</h3>
+      <div class="price">₹250 / Kg</div>
+      <select id="Kaanagadadalu Fish-qty">
+        <option value="1">1 Kg</option>
+        <option value="2">2 Kg</option>
+        <option value="3">3 Kg</option>
+<option value="4">4 Kg</option>
+<option value="5">5 Kg</option>
+      </select><br><br>
+      <button class="add" onclick="addToCart('Kaanagadadalu Fish',250,'Kaanagadadalu Fish-qty')">Add to Cart</button>
+    </div>
+
+
+    <div class="card">
+<img src="big size namala gulibindalu1.jpg" alt="big size namala gulibindalu" style="width:100%;border-radius:6px;margin-bottom:10px;" />
+      <h3>Namala Gulibindalu</h3>
+      <div class="price">₹200 / Kg</div>
+      <select id="Gulibindalu-qty">
+        <option value="1">1 Kg</option>
+        <option value="2">2 Kg</option>
+        <option value="3">3 Kg</option>
+<option value="4">4 Kg</option>
+<option value="5">5 Kg</option>
+      </select><br><br>
+      <button class="add" onclick="addToCart('Namala Gulibindalu',200,'Gulibindalu-qty')">Add to Cart</button>
+    </div>
+
+    <div class="card">
+<img src="bontha paara1.jpg" alt="bontha paara" style="width:100%;border-radius:6px;margin-bottom:10px;" />
+      <h3>Bontha Paara</h3>
+      <div class="price">₹600 / Kg</div>
+      <select id="bontha paara-qty">
+        <option value="1">1 Kg</option>
+        <option value="2">2 Kg</option>
+        <option value="3">3 Kg</option>
+<option value="4">4 Kg</option>
+<option value="5">5 Kg</option>
+      </select><br><br>
+      <button class="add" onclick="addToCart('Bontha Paara',600,'bontha paara-qty')">Add to Cart</button>
+    </div>
+
+<div class="card">
+<img src="Sorra(Shark)1.jpg" alt="sorra(shark)" style="width:100%;border-radius:6px;margin-bottom:10px;" />
+      <h3>sorra(shark) Fish</h3>
+      <div class="price">₹300 / Kg</div>
+      <select id="sorra(shark)-qty">
+        <option value="1">1 Kg</option>
+        <option value="2">2 Kg</option>
+        <option value="3">3 Kg</option>
+<option value="4">4 Kg</option>
+<option value="5">5 Kg</option>
+      </select><br><br>
+      <button class="add" onclick="addToCart('sorra(shark)',300,'sorra(shark)-qty')">Add to Cart</button>
+    </div>
+
+<div class="card">
+<img src="White Chanduvalu1.jpg" alt="white chanduvalu" style="width:100%;border-radius:6px;margin-bottom:10px;" />
+      <h3>white chanduvalu Fish</h3>
+      <div class="price">₹1000 / Kg</div>
+      <select id="white chanduvalu-qty">
+        <option value="1">1 Kg</option>
+        <option value="2">2 Kg</option>
+        <option value="3">3 Kg</option>
+<option value="4">4 Kg</option>
+<option value="5">5 Kg</option>
+      </select><br><br>
+      <button class="add" onclick="addToCart('White Chanduvalu Fish',1000,'white chanduvalu-qty')">Add to Cart</button>
+    </div>
+
+<div class="card">
+<img src="Black Chanduvalu1.jpg" alt="Black chanduvalu" style="width:100%;border-radius:6px;margin-bottom:10px;" />
+      <h3>Black chanduvalu Fish</h3>
+      <div class="price">₹500 / Kg</div>
+      <select id="Black chanduvalu-qty">
+        <option value="1">1 Kg</option>
+        <option value="2">2 Kg</option>
+        <option value="3">3 Kg</option>
+<option value="4">4 Kg</option>
+<option value="5">5 Kg</option>
+      </select><br><br>
+      <button class="add" onclick="addToCart('Black Chanduvalu Fish',500,'Black chanduvalu-qty')">Add to Cart</button>
+    </div>
+
+
+<div class="card">
+<img src="Kaaralu1.jpg" alt="kaaralu" style="width:100%;border-radius:6px;margin-bottom:10px;" />
+      <h3>kaaralu Fish</h3>
+      <div class="price">₹200 / Kg</div>
+      <select id="kaaralu-fish-qty">
+        <option value="1">1 Kg</option>
+        <option value="2">2 Kg</option>
+        <option value="3">3 Kg</option>
+<option value="4">4 Kg</option>
+<option value="5">5 Kg</option>
+      </select><br><br>
+      <button class="add" onclick="addToCart('Kaaralu Fish',200,'kaaralu-fish-qty')">Add to Cart</button>
+    </div>
+
+<div class="card">
+<img src="nethalu1.jpg" alt="nethalu" style="width:100%;border-radius:6px;margin-bottom:10px;" />
+      <h3>Nethalu Fish</h3>
+      <div class="price">₹300 / Kg</div>
+      <select id="nethalu-fish-qty">
+        <option value="1">1 Kg</option>
+        <option value="2">2 Kg</option>
+        <option value="3">3 Kg</option>
+<option value="4">4 Kg</option>
+<option value="5">5 Kg</option>
+      </select><br><br>
+      <button class="add" onclick="addToCart('Nethalu Fish',300,'nethalu-fish-qty')">Add to Cart</button>
+    </div>
+
+<div class="card">
+<img src="crab1.jpg" alt="crab" style="width:100%;border-radius:6px;margin-bottom:10px;" />
+      <h3>Crabs</h3>
+      <div class="price">₹500 / Kg</div>
+      <select id="crab-qty">
+        <option value="1">1 Kg</option>
+        <option value="2">2 Kg</option>
+        <option value="3">3 Kg</option>
+<option value="4">4 Kg</option>
+<option value="5">5 Kg</option>
+      </select><br><br>
+      <button class="add" onclick="addToCart('Crabs',500,'crab-qty')">Add to Cart</button>
+    </div>
+
+<div class="card">
+<img src="sea prawns1.jpg" alt="sea prawns" style="width:100%;border-radius:6px;margin-bottom:10px;" />
+      <h3>Sea Prawns</h3>
+      <div class="price">₹450 / Kg</div>
+      <select id="sea prawns-qty">
+        <option value="1">1 Kg</option>
+        <option value="2">2 Kg</option>
+        <option value="3">3 Kg</option>
+<option value="4">4 Kg</option>
+<option value="5">5 Kg</option>
+      </select><br><br>
+      <button class="add" onclick="addToCart('Sea Prawns',450,'sea prawns-qty')">Add to Cart</button>
+    </div>
+
+
+<div class="card">
+<img src="tholupaaralu1.jpg" alt="tholupaaralu" style="width:100%;border-radius:6px;margin-bottom:10px;" />
+      <h3>Tholupaaralu Fish</h3>
+      <div class="price">₹300 / Kg</div>
+      <select id="tholupaaralu-fish-qty">
+        <option value="1">1 Kg</option>
+        <option value="2">2 Kg</option>
+        <option value="3">3 Kg</option>
+<option value="4">4 Kg</option>
+<option value="5">5 Kg</option>
+      </select><br><br>
+      <button class="add" onclick="addToCart('Tholupaaralu Fish',300,'tholupaaralu-fish-qty')">Add to Cart</button>
+    </div>
+
+<div class="card">
+<img src="big crab1.jpg" alt="bigcrab" style="width:100%;border-radius:6px;margin-bottom:10px;" />
+      <h3>Big Crabs</h3>
+<p>Big size crab 5 pieces Per kg </p>
+      <div class="price">₹500 / Kg</div>
+      <select id="big crab-qty">
+        <option value="1">1 Kg</option>
+        <option value="2">2 Kg</option>
+        <option value="3">3 Kg</option>
+<option value="4">4 Kg</option>
+<option value="5">5 Kg</option>
+      </select><br><br>
+      <button class="add" onclick="addToCart('Big Crabs',500,'big crab-qty')">Add to Cart</button>
+    </div>
+
+<div class="card">
+<img src="small crab1.jpg" alt="big crab2" style="width:100%;border-radius:6px;margin-bottom:10px;" />
+      <h3>Small Crabs</h3>
+<p>Small size crab 8 pieces Per kg </p>
+      <div class="price">₹400 / Kg</div>
+      <select id="Small Crabs-qty">
+        <option value="1">1 Kg</option>
+        <option value="2">2 Kg</option>
+        <option value="3">3 Kg</option>
+<option value="4">4 Kg</option>
+<option value="5">5 Kg</option>
+      </select><br><br>
+      <button class="add" onclick="addToCart('Small Crabs',400,'Small Crabs-qty')">Add to Cart</button>
+    </div>
+
+<div class="card">
+<img src="dry prawns1.jpg" alt="dry prawns" style="width:100%;border-radius:6px;margin-bottom:10px;" />
+      <h3>Dry prawns</h3>
+
+      <div class="price">₹600 / Kg</div>
+      <select id="dry prawns-qty">
+        <option value="1">1 Kg</option>
+        <option value="2">2 Kg</option>
+        <option value="3">3 Kg</option>
+<option value="4">4 Kg</option>
+<option value="5">5 Kg</option>
+      </select><br><br>
+      <button class="add" onclick="addToCart('Dry prawns',600,'dry prawns-qty')">Add to Cart</button>
+    </div>
+
+
+
+<div class="card">
+<img src="dryfish1.jpg" alt="dryfish1" style="width:100%;border-radius:6px;margin-bottom:10px;" />
+      <h3>Dry Fish savadlu</h3>
+      <div class="price">₹500 / Kg</div>
+      <select id="dryfish1-qty">
+        <option value="1">1 Kg</option>
+        <option value="2">2 Kg</option>
+        <option value="3">3 Kg</option>
+<option value="4">4 Kg</option>
+<option value="5">5 Kg</option>
+      </select><br><br>
+      <button class="add" onclick="addToCart('Dry Fish savadlu',500,'dryfish1-qty')">Add to Cart</button>
+    </div>
+
+<div class="card">
+<img src="dryfish nethalu1.jpg" alt="dryfish nethalu" style="width:100%;border-radius:6px;margin-bottom:10px;" />
+      <h3>Dry Fish Nethalu</h3>
+      <div class="price">₹400 / Kg</div>
+      <select id="dryfish nethalu-qty">
+        <option value="1">1 Kg</option>
+        <option value="2">2 Kg</option>
+        <option value="3">3 Kg</option>
+<option value="4">4 Kg</option>
+<option value="5">5 Kg</option>
+      </select><br><br>
+      <button class="add" onclick="addToCart('Dry Fish Nethalu',400,'dryfish nethalu-qty')">Add to Cart</button>
+    </div>
+
+
+
+  </div>
+
+  <h3>Customer Details</h3>
+  <input type="text" id="custName" placeholder="Customer Name" style="width:100%;padding:8px;margin-bottom:8px;" />
+  <input type="text" id="custMobile" placeholder="Mobile Number" style="width:100%;padding:8px;margin-bottom:8px;" />
+  <textarea id="custAddress" placeholder="Delivery Address" style="width:100%;padding:8px;margin-bottom:15px;"></textarea>
+
+<section id="cart"> 
+ <h3>Your Cart</h3>
+  <ul id="cartItems"></ul>
+  <h3>Total Amount: ₹<span id="cartTotal">0</span></h3>
+  <button class="add" onclick="whatsappOrder()">Order on WhatsApp</button>
+</section>
+
+<section id="quality">
+  <h2>Hygiene & Quality</h2>
+  <p>OceanFresh Seafoods follows uncompromising hygiene and quality standards at every stage. Our seafood is meticulously cleaned, expertly handled, and preserved using ice-packed freshness techniques.</p>
+</section>
+
+<section id="about">
+  <h2>About Us</h2>
+  <p>OceanFresh Seafoods brings fresh seafood straight from the coast to your home. We clean and pack all seafood hygienically and deliver it fresh. Our focus is simple — good quality, fair price, and complete trust for our customers.</p>
+</section>
+
+<section id="contact">
+  <h2>Contact Us</h2>
+    <p>💬 WhatsApp Orders Available</p>
+  <p>🕒 Open: 6 AM – 9 PM (All Days)</p>
+</section>
+
+<footer>
+  <p>© 2026 OceanFresh Seafoods | FSSAI Licensed</p>
+</footer>
+
+<a href="https://wa.me/919347014563" class="whatsapp" target="_blank">WhatsApp</a>
+
+<script>
+
+function showToast(message){
+  const toast = document.getElementById('toast');
+  toast.innerText = message;
+  toast.classList.add('show');
+
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, 2500);
+}
+
+  let cart = [];
+
+
+function addToCart(name, price, qtyId) {
+  const qtyEl = document.getElementById(qtyId);
+  if (!qtyEl) {
+    alert('Quantity selector not found');
+    return;
+  }
+
+  const qty = parseInt(qtyEl.value, 10);
+  const total = price * qty;
+
+  cart.push({ name, qty, price, total });
+  updateCartView();
+
+  showToast(`${qty} Kg ${name} added to cart`);
+}
+
+  function removeItem(index) {
+    cart.splice(index, 1);
+    updateCartView();
+  }
+
+  function updateCartView() {
+    let list = '';
+    let sum = 0;
+    cart.forEach((item, i) => {
+      sum += item.total;
+      list += `<li>${item.name} - ${item.qty} Kg - ₹${item.total} <button onclick=\"removeItem(${i})\">❌</button></li>`;
+    });
+    document.getElementById('cartItems').innerHTML = list;
+    document.getElementById('cartTotal').innerText = sum;
+  }
+
+  function whatsappOrder() {
+    const name = document.getElementById('custName').value.trim();
+    const mobile = document.getElementById('custMobile').value.trim();
+    const address = document.getElementById('custAddress').value.trim();
+
+    if (!name || !mobile || !address) {
+      alert('Please fill customer details');
+      return;
+    }
+    if (cart.length === 0) {
+      alert('Cart is empty');
+      return;
+    }
+
+    let msg = 'Order from MD Seafoods%0A%0A';
+    msg += `Customer Name: ${name}%0A`;
+    msg += `Mobile: ${mobile}%0A`;
+    msg += `Address: ${address}%0A%0A`;
+
+    cart.forEach(item => {
+      msg += `${item.name} - ${item.qty} Kg = ₹${item.total}%0A`;
+    });
+
+    msg += `%0ATotal Amount: ₹${document.getElementById('cartTotal').innerText}`;
+    window.open(`https://wa.me/919347014563?text=${msg}`, '_blank');
+  }
+
+  // Basic runtime tests
+  console.assert(typeof addToCart === 'function', 'addToCart should be defined');
+  console.assert(typeof whatsappOrder === 'function', 'whatsappOrder should be defined');
+</script>
+
+</body>
+</html>
